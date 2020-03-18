@@ -1,26 +1,25 @@
+import re
+
 def check_password(password):
     """
     Funcion to check password policy
     :param password: the password
     :return: if the password accept our policy
     """
-    SPECIAL_CHARS = '*&^%$#@'
-
     check_lowercase = False
     check_number = False
     check_uppercase = False
     check_special = False
 
     if 6 <= len(password) <= 12:
-        for letter in password:
-            if letter.islower():
-                check_lowercase = True
-            if letter.isdigit():
-                check_number = True
-            if letter.isupper():
-                check_uppercase = True
-            if letter in SPECIAL_CHARS:
-                check_special = True
+        if re.search('[a-z]', password):
+            check_lowercase = True
+        if re.search('[0-9]', password):
+            check_number = True
+        if re.search('[A-Z]', password):
+            check_uppercase = True
+        if re.search('[*&^%$#@]', password):
+            check_special = True
 
     if check_lowercase and check_number and check_uppercase and check_special:
         return True
