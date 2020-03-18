@@ -21,14 +21,18 @@ def replace_every_second_word(sentence, word_to_replace="biss10"):
     return ' '.join(new_sentence)
 
 
+def one_liner_replace(sentence):
+    return (' '.join([word if sentence.split(' ').index(word) % 2 == 0 else "biss10" for word in sentence.split(' ')]))
+
+
 def main():
     if len(sys.argv) != 2:
         print("usage: ./WordSwap.py sentence")
         sys.exit(1)
 
     sentence = sys.argv[1]
-    print(replace_every_second_word(sentence))
-
+    # One liner:
+    one_liner_replace(sentence)
 
 if __name__ == '__main__':
     main()

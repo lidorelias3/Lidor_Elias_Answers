@@ -47,14 +47,11 @@ def print_top(filename):
     :return:
     """
     print("print_top")
-    flag = 0
     # Sort by values
     words = sorted(get_words_frequency(filename).items(), key=lambda x: x[1], reverse=True)
+    words = words[:20] if len(words) >= 20 else words
     for word, frequency in words:
         print(word, frequency)
-        flag += 1
-        if flag == 20:
-            break
 
 
 def main():
