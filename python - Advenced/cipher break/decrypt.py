@@ -8,7 +8,10 @@ def xor(char, xor_with):
 
 # check if all the chars printable
 def check_if_printable(text):
-    return all(c in string.printable for c in text)
+    for char in text:
+        if 32 >= ord(char) or ord(char) <= 122:
+            return False
+    return True
 
 
 def main():
@@ -31,7 +34,7 @@ def main():
                         clear_text += xor(char, c)
                     counter += 1
 
-                if check_if_printable(clear_text) and a == 'z' and b == 'a' and c == 'z':
+                if check_if_printable(clear_text):
                     print(clear_text)
 
 
