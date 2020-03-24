@@ -47,6 +47,7 @@ char* get_number_options(char number, char* options)
 		{
 			if (numbers_lock[i][j] == number)
 			{
+				/*Add to options*/
 				strncat(options, &numbers_lock[i - 1][j], 1);
 				strncat(options, &numbers_lock[i + 1][j], 1);
 				strncat(options, &numbers_lock[i][j - 1], 1);
