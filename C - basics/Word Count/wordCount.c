@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 #pragma warning(disable:4996)
 
@@ -78,9 +79,12 @@ void check_how_many_diff_words(char* file_name)
 					{
 						total_length += curr_word_length;
 						/*Allocate more memory*/
-						words = (char**)realloc(words,  total_length * sizeof(char*));
+						if (ceil(log2(words_counter + 1)) == floor(log2(words_counter + 1)))
+						{
+							words = (char**)realloc(words, (pow(words_counter + 1, 2)) * sizeof(char*));
+						}
 						words[words_counter] = (char*)malloc(curr_word_length * sizeof(char) + 1);
-						strcpy_s(words[words_counter], curr_word_length + 4, curr_word);
+						strcpy_s(words[words_counter], curr_word_length + 1, curr_word);
 						words_counter++;
 					}
 					memset(curr_word, 0, curr_word_length);
@@ -95,7 +99,7 @@ void check_how_many_diff_words(char* file_name)
 		} while (ch != EOF && ch != '\0');
 
 	}
-
+	fclose(f);
 	printf("The number of diffrent words in the string is: %d\n", words_counter);
 
 	free(words);

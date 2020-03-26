@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define BUF_SIZE 100
-
 typedef struct square
 {
 	int size;
