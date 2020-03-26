@@ -4,8 +4,6 @@
 
 #pragma warning(disable:4996)
 
-#define SIZE 128
-
 int my_getline(char** buffer, size_t* bufsize, FILE* stream);
 
 int main()
