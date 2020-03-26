@@ -8,6 +8,7 @@ typedef struct node
 }node;
 
 void print_linked_list(node* head);
+void free_linked_list(node * head);
 void insert_new_node(node** head, node* new_node, int place);
 
 int main()
@@ -39,7 +40,10 @@ int main()
 	insert_new_node(&head, more_node_to_add, 0);
 	print_linked_list(head);
 
+	free_linked_list(head);
+
 	system("PAUSE");
+	return 0;
 }
 
 void print_linked_list(node* head)
@@ -54,6 +58,17 @@ void print_linked_list(node* head)
 	printf("NULL\n");
 }
 
+void free_linked_list(node * head)
+{
+	/*Function will free memory*/
+	node* temp;
+	while (!head)
+	{
+		temp = head;
+		head = head->next;
+		free(temp);
+	}
+}
 
 void insert_new_node(node** head, node* new_node, int place)
 {
