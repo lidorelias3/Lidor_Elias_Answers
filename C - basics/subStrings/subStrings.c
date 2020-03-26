@@ -1,27 +1,27 @@
 #include <stdio.h>
 #include <string.h>
 
-#define BUFFER 128
 #define FALSE 0
-#define TRUE 1
+#define TRUE !FALSE
 
 int check_sub_string(char* str1, char* str2);
 
 
 int main()
 {
-	check_sub_string("aaaabbbalidorabba", "lidor");
+	printf("%d\n", check_sub_string("aaaabbbalidorabbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "lidor"));
 	system("PAUSE");
 }
 
 /* Function will check if sub string in string */
 int check_sub_string(char* str1, char* str2)
 {
+	int i = 0;
 	int str2_counter = 0;
 	int found = FALSE;
 
 	/* For each char in str1 */
-	for (int i = 0; i < strlen(str1) && found == FALSE; ++i)
+	for (i = 0; i < strlen(str1) && found == FALSE; ++i)
 	{
 		if (str2_counter < strlen(str2))
 		{
