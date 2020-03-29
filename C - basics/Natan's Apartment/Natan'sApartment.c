@@ -1,4 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -49,14 +48,14 @@ char** get_options(char remembered_code[])
 	for (i = 0; i < strlen(remembered_code); ++i)
 	{
 		/*Get all the option including the same number*/
-		strncat(all_options[i], &remembered_code[i], 1);
+		strncat_s(all_options[i], 1+SIZE, &remembered_code[i], 1);
 
 		get_number_options(remembered_code[i], curr_option);
 		for (j = 0; j < strlen(curr_option); ++j)
 		{
 			if (curr_option[j] != '-')
 			{
-				strncat(all_options[i], &curr_option[j], 1);
+				strncat_s(all_options[i], 1 + SIZE, &curr_option[j], 1);
 			}
 		}
 	}
@@ -83,10 +82,10 @@ char* get_number_options(char number, char* options)
 			if (numbers_lock[i][j] == number)
 			{
 				/*Add to options*/
-				strncat(options, &numbers_lock[i - 1][j], 1);
-				strncat(options, &numbers_lock[i + 1][j], 1);
-				strncat(options, &numbers_lock[i][j - 1], 1);
-				strncat(options, &numbers_lock[i][j + 1], 1);
+				strncat_s(options, SIZE, &numbers_lock[i - 1][j], 1);
+				strncat_s(options, SIZE, &numbers_lock[i + 1][j], 1);
+				strncat_s(options, SIZE, &numbers_lock[i][j - 1], 1);
+				strncat_s(options, SIZE, &numbers_lock[i][j + 1], 1);
 				break;
 			}
 		}
@@ -121,7 +120,7 @@ char** all_combinations(char** arr, int length)
 		memset(combinations[last], 0, length);
 		for (i = 0; i < length; ++i)
 		{
-			strncat(combinations[last], &arr[i][index_arr[i]], 1);
+			strncat_s(combinations[last], length + 1, &arr[i][index_arr[i]], 1);
 		}
 		printf("%s\n", combinations[last]);
 		last++;
