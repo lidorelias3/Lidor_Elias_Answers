@@ -3,7 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-#pragma warning(disable:4996)
 
 int count_numbers_as_Words(int number);
 
@@ -40,28 +39,28 @@ int count_numbers_as_Words(int number)
 		if (number < 10)
 		{
 			number_as_words = (char*)realloc(number_as_words, (strlen(units[number]) + 1)*(sizeof(char)));
-			strcpy(number_as_words, units[number]);
+			strcpy_s(number_as_words, strlen(units[number]) + 1, units[number]);
 		}
 		else if (number >= 10 && number < 20)
 		{
 			number_as_words = (char*)realloc(number_as_words, (strlen(teens[number % 10]) + 1)*(sizeof(char)));
-			strcpy(number_as_words, teens[number % 10]);
+			strcpy_s(number_as_words, strlen(teens[number % 10]) + 1, teens[number % 10]);
 		}
 		else if (number == 100)
 		{
 			number_as_words = (char*)realloc(number_as_words, (strlen(units[1]) + strlen(tens_and_hundred[0]) + 1)*(sizeof(char)));
-			strcpy(number_as_words, units[1]);
+			strcpy_s(number_as_words, strlen(units[1]) + strlen(tens_and_hundred[0]) + 1, units[1]);
 			//strcat(number_as_words, " ");
-			strcat(number_as_words, tens_and_hundred[0]);
+			strcat_s(number_as_words, strlen(units[1]) + strlen(tens_and_hundred[0]) + 1, tens_and_hundred[0]);
 		}
 		else
 		{
 			number_as_words = (char*)realloc(number_as_words, (strlen(tens_and_hundred[(number / 10) - 1]) + strlen(units[number%10]) + 1)*(sizeof(char)));
-			strcpy(number_as_words, tens_and_hundred[(number / 10) - 1]);
+			strcpy_s(number_as_words, strlen(tens_and_hundred[(number / 10) - 1]) + strlen(units[number % 10]) + 1, tens_and_hundred[(number / 10) - 1]);
 			//strcat(number_as_words, "-");
 			if (number % 10 != 0)
 			{
-				strcat(number_as_words, units[number % 10]);
+				strcat_s(number_as_words, strlen(tens_and_hundred[(number / 10) - 1]) + strlen(units[number % 10]) + 1, units[number % 10]);
 			}
 		}
 		printf("%s - %d\n", number_as_words, strlen(number_as_words));
