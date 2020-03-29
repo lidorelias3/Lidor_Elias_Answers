@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define FALSE 0
+#define TRUE !FALSE
+
 typedef struct node
 {
 	int val;
@@ -9,6 +12,7 @@ typedef struct node
 
 void print_linked_list(node* head);
 void free_linked_list(node * head);
+int circularly_linked(node* head);
 void insert_new_node(node** head, node* new_node, int place);
 
 int main()
@@ -37,13 +41,40 @@ int main()
 	print_linked_list(head);
 	insert_new_node(&head, node_to_add, 1);
 	print_linked_list(head);
-	insert_new_node(&head, more_node_to_add, 0);
+	insert_new_node(&head, more_node_to_add, 3);
 	print_linked_list(head);
+	more_node_to_add->next = head->next->next;
+	printf("%d\n", circularly_linked(head));
 
 	free_linked_list(head);
 
 	system("PAUSE");
 	return 0;
+}
+
+
+int circularly_linked(node* head)
+{
+	int i = 0;
+	int length = 0;
+	node* temp = head;
+	node* curr = head;
+
+	while (curr)
+	{
+		curr = curr->next;
+		for (i = 0; i < length && curr; ++i)
+		{
+			if (curr == temp)
+			{
+				return TRUE;
+			}
+			temp = temp->next;
+		}
+		temp = head;
+		length++;
+	}
+	return FALSE;
 }
 
 void print_linked_list(node* head)
