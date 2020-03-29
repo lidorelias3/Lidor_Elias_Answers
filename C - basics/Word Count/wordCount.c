@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-#pragma warning(disable:4996)
 
 #define True 1
 #define False 0
@@ -36,12 +35,18 @@ int check_if_word_in_array(const char **words_array, int len, const char* word)
 
 void check_how_many_diff_words(char* file_name)
 {
-	FILE* f = fopen(file_name, "r");
+	FILE* f;
+	errno_t err;
 	int len = 0;
 	char ch;
 	int curr_word_length = 0;
 	int words_counter = 0;
 	int total_length = 0;
+
+	if ((err = fopen_s(&f, "lidor.txt", "r")) != 0)
+	{
+		return EXIT_FAILURE;
+	}
 
 	/*Allocating memory*/
 	char **words = (char**)malloc(sizeof(char*));
