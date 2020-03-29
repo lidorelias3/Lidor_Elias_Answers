@@ -4,13 +4,21 @@
 #define FALSE 0
 #define TRUE !FALSE
 
+int call_check_sub_string(char* str1, char* str2);
 int check_sub_string(char* str1, char* str2);
 
 
 int main()
 {
-	printf("%d\n", check_sub_string("aaaabbbalidorabbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "lidor"));
+	printf("%d\n", call_check_sub_string((char*)"lidoraaaaaaaaaaaaaaa", (char*)"lidoraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
 	system("PAUSE");
+}
+
+
+int call_check_sub_string(char* str1, char* str2)
+{
+	/*Function check for both strings*/
+	return check_sub_string(str1, str2) || check_sub_string(str2, str1);
 }
 
 /* Function will check if sub string in string */
