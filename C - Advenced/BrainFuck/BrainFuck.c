@@ -42,9 +42,17 @@ void execute(char* file_name)
 					offset--;
 					break;
 				case '+':
+					if (offset > 1000)
+					{
+						return;
+					}
 					brainFuck_arr[offset]++;
 					break;
 				case '-':
+					if (offset < 0)
+					{
+						return;
+					}
 					brainFuck_arr[offset]--;
 					break;
 				case ',':
