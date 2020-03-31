@@ -37,22 +37,24 @@ void execute(char* file_name)
 				{
 				case '>':
 					offset++;
+					if (offset > 1000)
+					{
+						printf("RANGE ERROR");
+						return;
+					}
 					break;
 				case '<':
 					offset--;
-					break;
-				case '+':
-					if (offset > 1000)
+					if (offset < 0)
 					{
+						printf("RANGE ERROR");
 						return;
 					}
+					break;
+				case '+':
 					brainFuck_arr[offset]++;
 					break;
 				case '-':
-					if (offset < 0)
-					{
-						return;
-					}
 					brainFuck_arr[offset]--;
 					break;
 				case ',':
@@ -64,7 +66,7 @@ void execute(char* file_name)
 					if (brainFuck_arr[offset] == 0)
 					{
 						/*Move to next ']'*/
-						while (offset > 0 && ch != ']')
+						while (read_count < SIZE && ch != ']')
 						{
 							fseek(f, ++read_count, SEEK_SET);
 							ch = fgetc(f);
