@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-#pragma warning(disable:4996)
-
 #define SIZE 1000
 
 void execute(char* file_name);
@@ -20,7 +18,13 @@ void execute(char* file_name)
 	char ch;
 	int offset = 0;
 	int read_count = 0;
-	FILE* f = fopen(file_name, "r");
+	FILE *f;
+	errno_t err;
+
+	if ((err = fopen_s(&f, file_name, "r")) != 0)
+	{
+		return -1;
+	}
 	if (f == NULL)
 	{
 		printf("could not find file\n");
