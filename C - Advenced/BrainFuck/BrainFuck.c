@@ -66,7 +66,7 @@ void execute(char* file_name)
 					if (brainFuck_arr[offset] == 0)
 					{
 						/*Move to next ']'*/
-						while (read_count < SIZE && ch != ']')
+						while (ch != ']')
 						{
 							fseek(f, ++read_count, SEEK_SET);
 							ch = fgetc(f);
