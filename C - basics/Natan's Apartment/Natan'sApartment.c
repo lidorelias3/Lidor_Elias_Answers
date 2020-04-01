@@ -6,7 +6,6 @@
 #define FALSE 0
 #define TRUE !FALSE
 
-
 char** return_result(char* str);
 char* get_number_options(char number, char* options);
 char** get_options(char remembered_code[]);
@@ -14,7 +13,6 @@ char** all_combinations(char** arr, int length);
 
 int main()
 {
-	int i = 0;
 	char** options = return_result("1357");
 
 	free(options);
@@ -155,5 +153,6 @@ char** all_combinations(char** arr, int length)
 			index_arr[i] = 0;
 		}
 	}
+	free(*index_arr);
 	return combinations;
 }
