@@ -6,6 +6,7 @@
 #define FALSE 0
 #define TRUE !FALSE
 
+
 char** return_result(char* str);
 char* get_number_options(char number, char* options);
 char** get_options(char remembered_code[]);
@@ -13,17 +14,26 @@ char** all_combinations(char** arr, int length);
 
 int main()
 {
+	int i = 0;
 	char** options = return_result("1357");
 
+	free(options);
 	system("PAUSE");
 }
 
 
 char** return_result(char* str)
 {
+	int i = 0;
 	/*Combine all the functions and return the result*/
 	char** options = get_options(str);
 	char** combination_array = all_combinations(options, strlen(str));
+	
+	for (i = 0; i < strlen(str); ++i)
+	{
+		free(options[i]);
+	}
+	free(options);
 	return combination_array;
 }
 
@@ -101,6 +111,7 @@ char** all_combinations(char** arr, int length)
 	int i = 0;
 	int n = 0;
 	int last = 0;
+	
 	int* index_arr = (int*)malloc(length * sizeof(int));
 
 	/*Creating the return array*/

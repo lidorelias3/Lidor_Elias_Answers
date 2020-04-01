@@ -24,6 +24,7 @@ int count_numbers_as_Words(int number)
 {
 	/*Function will convert the number to a word and return word length*/
 	int i = 0;
+	int length = 0;
 
 	int count_letters = 0;
 	char *number_as_words = (char*)malloc(sizeof(char));
@@ -71,6 +72,8 @@ int count_numbers_as_Words(int number)
 		return 0;
 	}
 
-	return strlen(number_as_words);
+	length = strlen(number_as_words);
+	free(number_as_words);
+	return length;
 
 }
