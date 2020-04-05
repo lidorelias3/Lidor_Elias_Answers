@@ -70,7 +70,7 @@ void execute(char* file_name)
 					if (brainFuck_arr[offset] == 0)
 					{
 						/*Move to next ']'*/
-						while (ch != ']')
+						while (ch != ']' && ch != EOF && ch != '\0')
 						{
 							fseek(f, ++read_count, SEEK_SET);
 							ch = fgetc(f);
